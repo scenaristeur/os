@@ -22,12 +22,13 @@
 # hierarchy
 - all worlds & brains are extension of neurones in a Object Oriented Programming way `World extends Neurone` `Brain extends Neurone` https://www.google.com/search?q=programmation+orient%C3%A9e+objet
 - all Neurones and Brains & Worlds are Agents in a MultiAgents Oriented Programming way https://www.google.com/search?q=multiagents
+- this app is a Neurone too
 
 # neurones are jsonld
-the code for creating a Neurone
+the code for creating a Neurone see [/test/basic_neurone/index.js](https://github.com/scenaristeur/os/blob/main/test/basic_neurone/index.js) file
 
 ```
-import {Neurone} from './neurone-factory/index.js';
+import {Neurone} from '../../experiments/neurone-factory/index.js';
 let neurone = new Neurone()
 console.log("neurone", neurone)
 ```
