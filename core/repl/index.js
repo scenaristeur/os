@@ -46,8 +46,9 @@ class Repl{
     .listen(5001);
 
     console.log('Remote REPL started on port 5001.');
-    console.log('try "mood()" or "bonus" from remote')
-    console.log("try '.sayhello Bob' or '.saybye'")
+    console.log('###try "mood()" or "bonus" from remote')
+    console.log("###try '.sayhello Bob' . Be carefull : '.saybye' will close the app!")
+    console.log("###try say('truc') ")
 
     // A "local" node repl with a custom prompt
     const local = repl.start('node::local> ');

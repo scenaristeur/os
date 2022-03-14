@@ -1,8 +1,3 @@
-import { Univers } from './core/levelgraph-jsonld/index.js';
-import { Repl } from './core/repl/index.js';
-
-let univers = new Univers()
-let repl = new Repl()
-
-console.log("univers", univers)
-console.log("OS is running ")
+import './index-minimal.js'
+// + import colors and other funny tools
+console.log("---------------------------- OS funny is running\n")
