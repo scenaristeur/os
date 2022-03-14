@@ -1,0 +1,18 @@
+{
+  "name": "levelgraph-jsonld",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "level": "^7.0.1",
+    "levelgraph": "^2.1.1",
+    "levelgraph-jsonld": "^1.2.0"
+  }
+}

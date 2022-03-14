@@ -1,0 +1,24 @@
+{
+  "name": "os",
+  "version": "1.0.0",
+  "description": "- neurones are the most small entities of intelligences. - brains are groups of neurones - in a world we can find some brains and a lot of other things",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scenaristeur/os.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/scenaristeur/os/issues"
+  },
+  "homepage": "https://github.com/scenaristeur/os#readme"
+}
