@@ -67,13 +67,19 @@ neurone Neurone {
     updated: null,
     synchronized: null
   }
-```
+  ```
 
 
-# modules
+  # modules
   - modules are nodejs ES6 modules
+  - modules using needing require/common need to start with
+  ```
+  //https://nodejs.org/api/module.html#module_module_createrequire_filename
+  import { createRequire } from 'module';
+  const require = createRequire(import.meta.url);
+  ```
+  
   - modules need `"type": "module",` in the package.json otherwise you got a message like
-
 
   ```
   ~/dev/os/experiments$ node .
@@ -87,74 +93,84 @@ neurone Neurone {
 
   ```
 
-# some repl commands
-.editor .load
-# using .editor to store data
+  # some repl commands
+  - https://nodejs.org/api/repl.html#javascript-expressions
+  .editor .load
 
-```
-node::local> .editor
-// Entering editor mode (Ctrl+D to finish, Ctrl+C to cancel)
-let data = {
-  "@context": {
-    "@vocab": "http://xmlns.com/foaf/0.1/"
-  },
-  "@id": "http://bigbluehat.com/#",
-  "name": "BigBlueHat",
-  "knows": [
-    {
-      "@id": "http://manu.sporny.org#person",
-      "name": "Manu Sporny",
-      "homepage": "http://manu.sporny.org/"
-    }
-  ]
-}
-undefined
+  # or enquirer
+  - https://www.npmjs.com/package/enquirer
 
-node::local> console.log(data)
-{
-  '@context': { '@vocab': 'http://xmlns.com/foaf/0.1/' },
-  '@id': 'http://bigbluehat.com/#',
-  name: 'BigBlueHat',
-  knows: [
-    {
-      '@id': 'http://manu.sporny.org#person',
-      name: 'Manu Sporny',
-      homepage: 'http://manu.sporny.org/'
-    }
-  ]
-}
-undefined
+  # levelgraph-jsonld
+  - https://github.com/levelgraph/levelgraph-jsonld
+  - playground https://wileylabs.github.io/levelgraph-playground/
 
-node::local> .editor
-// Entering editor mode (Ctrl+D to finish, Ctrl+C to cancel)
-univers.put(data, function(err, obj) {
-  console.log("--data", obj)
-  // do something after the obj is inserted
-});
-undefined
 
-node::local> --data {
-  '@context': { '@vocab': 'http://xmlns.com/foaf/0.1/' },
-  '@id': 'http://bigbluehat.com/#',
-  name: 'BigBlueHat',
-  knows: [
-    {
-      '@id': 'http://manu.sporny.org#person',
-      name: 'Manu Sporny',
-      homepage: 'http://manu.sporny.org/'
+  # using .editor to store data
+
+  ```
+  node::local> .editor
+  // Entering editor mode (Ctrl+D to finish, Ctrl+C to cancel)
+  let data = {
+    "@context": {
+      "@vocab": "http://xmlns.com/foaf/0.1/"
+      },
+      "@id": "http://bigbluehat.com/#",
+      "name": "BigBlueHat",
+      "knows": [
+      {
+        "@id": "http://manu.sporny.org#person",
+        "name": "Manu Sporny",
+        "homepage": "http://manu.sporny.org/"
+      }
+      ]
     }
-  ]
-}
---data {
-  '@context': { '@vocab': 'http://xmlns.com/foaf/0.1/' },
-  '@id': 'http://bigbluehat.com/#',
-  name: 'BigBlueHat',
-  knows: [
+    undefined
+
+    node::local> console.log(data)
     {
-      '@id': 'http://manu.sporny.org#person',
-      name: 'Manu Sporny',
-      homepage: 'http://manu.sporny.org/'
+      '@context': { '@vocab': 'http://xmlns.com/foaf/0.1/' },
+      '@id': 'http://bigbluehat.com/#',
+      name: 'BigBlueHat',
+      knows: [
+      {
+        '@id': 'http://manu.sporny.org#person',
+        name: 'Manu Sporny',
+        homepage: 'http://manu.sporny.org/'
+      }
+      ]
     }
-  ]
-}
-```
+    undefined
+
+    node::local> .editor
+    // Entering editor mode (Ctrl+D to finish, Ctrl+C to cancel)
+    univers.put(data, function(err, obj) {
+      console.log("--data", obj)
+      // do something after the obj is inserted
+      });
+      undefined
+
+      node::local> --data {
+        '@context': { '@vocab': 'http://xmlns.com/foaf/0.1/' },
+        '@id': 'http://bigbluehat.com/#',
+        name: 'BigBlueHat',
+        knows: [
+        {
+          '@id': 'http://manu.sporny.org#person',
+          name: 'Manu Sporny',
+          homepage: 'http://manu.sporny.org/'
+        }
+        ]
+      }
+      --data {
+        '@context': { '@vocab': 'http://xmlns.com/foaf/0.1/' },
+        '@id': 'http://bigbluehat.com/#',
+        name: 'BigBlueHat',
+        knows: [
+        {
+          '@id': 'http://manu.sporny.org#person',
+          name: 'Manu Sporny',
+          homepage: 'http://manu.sporny.org/'
+        }
+        ]
+      }
+      ```
