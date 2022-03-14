@@ -3,7 +3,7 @@ import { Univers } from './core/levelgraph-jsonld/index.js';
 import { Repl } from './core/repl/index.js';
 
 let univers = new Univers()
-let repl = new Repl()
+let repl = new Repl({context:{univers: univers}})
 
 // console.log("univers", univers)
 console.log("\n---------------------------- OS minimal is running\n")

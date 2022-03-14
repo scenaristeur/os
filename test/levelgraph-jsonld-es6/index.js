@@ -30,3 +30,8 @@ univers.put(manu, function(err, obj) {
   console.log("--obj", obj)
   // do something after the obj is inserted
 });
+
+univers.put(data, function(err, obj) {
+  console.log("--data", obj)
+  // do something after the obj is inserted
+});

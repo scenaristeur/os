@@ -86,3 +86,75 @@ neurone Neurone {
   SyntaxError: Cannot use import statement outside a module
 
   ```
+
+# some repl commands
+.editor .load
+# using .editor to store data
+
+```
+node::local> .editor
+// Entering editor mode (Ctrl+D to finish, Ctrl+C to cancel)
+let data = {
+  "@context": {
+    "@vocab": "http://xmlns.com/foaf/0.1/"
+  },
+  "@id": "http://bigbluehat.com/#",
+  "name": "BigBlueHat",
+  "knows": [
+    {
+      "@id": "http://manu.sporny.org#person",
+      "name": "Manu Sporny",
+      "homepage": "http://manu.sporny.org/"
+    }
+  ]
+}
+undefined
+
+node::local> console.log(data)
+{
+  '@context': { '@vocab': 'http://xmlns.com/foaf/0.1/' },
+  '@id': 'http://bigbluehat.com/#',
+  name: 'BigBlueHat',
+  knows: [
+    {
+      '@id': 'http://manu.sporny.org#person',
+      name: 'Manu Sporny',
+      homepage: 'http://manu.sporny.org/'
+    }
+  ]
+}
+undefined
+
+node::local> .editor
+// Entering editor mode (Ctrl+D to finish, Ctrl+C to cancel)
+univers.put(data, function(err, obj) {
+  console.log("--data", obj)
+  // do something after the obj is inserted
+});
+undefined
+
+node::local> --data {
+  '@context': { '@vocab': 'http://xmlns.com/foaf/0.1/' },
+  '@id': 'http://bigbluehat.com/#',
+  name: 'BigBlueHat',
+  knows: [
+    {
+      '@id': 'http://manu.sporny.org#person',
+      name: 'Manu Sporny',
+      homepage: 'http://manu.sporny.org/'
+    }
+  ]
+}
+--data {
+  '@context': { '@vocab': 'http://xmlns.com/foaf/0.1/' },
+  '@id': 'http://bigbluehat.com/#',
+  name: 'BigBlueHat',
+  knows: [
+    {
+      '@id': 'http://manu.sporny.org#person',
+      name: 'Manu Sporny',
+      homepage: 'http://manu.sporny.org/'
+    }
+  ]
+}
+```

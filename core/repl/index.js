@@ -28,7 +28,7 @@ export { Repl }
 
 class Repl{
   constructor(options = {}) {
-
+    Object.assign(context, options.context)
     this.init()
   }
 
@@ -60,6 +60,7 @@ class Repl{
   }
 
   defineCommands(server){
+    console.log(context)
     Object.assign(server.context, context)
     server.defineCommand('sayhello', {
       help: 'Say hello',
