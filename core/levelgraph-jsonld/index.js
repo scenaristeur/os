@@ -10,29 +10,21 @@ levelgraph = require('levelgraph'),
 jsonld     = require('levelgraph-jsonld'),
 db         = jsonld(levelgraph(universDB));
 
+export { Univers }
 
-// console.log(db)
-try{
-  const univers = db.jsonld
-  console.log(dbName+" DB created")
-}catch(e){
-  console.log(e)
+class Univers{
+  constructor(options = {}) {
+
+    //super(options)
+    //options['type'] == undefined ? this['type'] = "univers": ""
+    // this.options = options
+    return this.init()
+  }
+
+  init(){
+    const univers = db.jsonld
+    console.log(dbName+" DB created")
+
+    return univers
+  }
 }
-
-// var manu = {
-//   "@context": {
-//     "name": "http://xmlns.com/foaf/0.1/name",
-//     "homepage": {
-//       "@id": "http://xmlns.com/foaf/0.1/homepage",
-//       "@type": "@id"
-//     }
-//   },
-//   "@id": "http://manu.sporny.org#person",
-//   "name": "Manu Sporny",
-//   "homepage": "http://manu.sporny.org/"
-// };
-//
-// univers.put(manu, function(err, obj) {
-//   console.log("--obj", obj)
-//   // do something after the obj is inserted
-// });

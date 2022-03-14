@@ -1,4 +1,8 @@
-import './core/levelgraph-jsonld/index.js';
-import './core/repl/index.js';
+import { Univers } from './core/levelgraph-jsonld/index.js';
+import { Repl } from './core/repl/index.js';
 
+let univers = new Univers()
+let repl = new Repl()
+
+console.log("univers", univers)
 console.log("OS is running ")
