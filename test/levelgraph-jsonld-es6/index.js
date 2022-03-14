@@ -3,10 +3,10 @@ import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
 const level      = require('level'),
-yourDB     = level('./yourdb'),
+universDB     = level('./universDB'),
 levelgraph = require('levelgraph'),
 jsonld     = require('levelgraph-jsonld'),
-db         = jsonld(levelgraph(yourDB));
+db         = jsonld(levelgraph(universDB));
 
 
 console.log(db)
