@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "level": "^7.0.1",
-    "levelgraph": "^2.1.1",
-    "levelgraph-jsonld": "scenaristeur/levelgraph-jsonld#patch-1"
+    "levelgraph": "^3.0.0",
+    "levelgraph-jsonld": "^1.2.0"
   }
 }

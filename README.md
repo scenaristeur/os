@@ -1,3 +1,6 @@
+# erreur dependance obsolete
+ -     "levelgraph-jsonld": "scenaristeur/levelgraph-jsonld#patch-1"
+
 # worlds / brains / neurones
 - neurones are the most small entities of intelligences.
 - brains are groups of neurones
@@ -70,7 +73,7 @@ neurone Neurone {
   ```
 
 
-  # modules
+# modules
   - modules are nodejs ES6 modules
   - modules using needing require/common need to start with
   ```
@@ -78,7 +81,7 @@ neurone Neurone {
   import { createRequire } from 'module';
   const require = createRequire(import.meta.url);
   ```
-  
+
   - modules need `"type": "module",` in the package.json otherwise you got a message like
 
   ```
@@ -93,19 +96,23 @@ neurone Neurone {
 
   ```
 
-  # some repl commands
+
+# for user interaction : repl or enquirer ? both in paralel ? see test folder
+
+
+# some repl commands
   - https://nodejs.org/api/repl.html#javascript-expressions
   .editor .load
 
-  # or enquirer
+# or enquirer
   - https://www.npmjs.com/package/enquirer
 
-  # levelgraph-jsonld
+# levelgraph-jsonld
   - https://github.com/levelgraph/levelgraph-jsonld
   - playground https://wileylabs.github.io/levelgraph-playground/
 
 
-  # using .editor to store data
+# using repl .editor to store data
 
   ```
   node::local> .editor

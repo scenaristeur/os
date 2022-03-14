@@ -13,6 +13,6 @@
   "dependencies": {
     "level": "^7.0.1",
     "levelgraph": "^2.1.1",
-    "levelgraph-jsonld": "scenaristeur/levelgraph-jsonld#patch-1"
+    "levelgraph-jsonld": "^1.2.0"
   }
 }

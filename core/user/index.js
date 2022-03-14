@@ -1,11 +1,10 @@
 
-export { Core }
+export { User }
 
-class Core {
+class User {
   constructor(options = {}) {
-    this.pwd =  process.env.PWD
+    this.user =  process.env.USER
     this.lang = process.env.LANG
-    this.language = process.env.LANGUAGE
     // // this['ve:type'] = "base"
     // // loading modele
     // Object.assign(this, modele);
