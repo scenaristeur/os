@@ -3,7 +3,7 @@
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
-let db
+let univers
 const net = require('net');
 const repl = require('repl');
 
@@ -17,60 +17,45 @@ const say = function(text) {
   return "ok"
 }
 
-var manu = {
-  "@context": {
-    "name": "http://xmlns.com/foaf/0.1/name",
-    "homepage": {
-      "@id": "http://xmlns.com/foaf/0.1/homepage",
-      "@type": "@id"
-    }
-  },
-  "@id": "http://manu.sporny.org#person",
-  "name": "Manu Sporny",
-  "homepage": "http://manu.sporny.org/"
-};
 
 
-let put = function() {
-  // let date = Date.now()
-  manu.name += Date.now()
-  // var triple = { subject: "a", predicate: "b", subject: date}
-  db.put(manu, function(err, obj){
-    console.log("PUT OBJ", obj)
-    //return err || "put done"
-    //console.log("put done")
-    // return "triple inserted"
-  })
-  return "put done"
-}
+//
+// let put1 = function(data = "test") {
+//   // return univers.put(data)
+//    let res = new Promise(resolve => {
+//     univers.put(data, response => resolve(`${response}`));
+//   });
+//   console.log(res)
+//   return res
+//   //return "--put"
+// }
+//
+// let get = function(data) {
+// let res = new Promise(resolve => {
+//     univers.get(data, response => resolve(`${response}`));
+//   });
+//   console.log(res)
+//   return res
+//    // return univers.get(data)
+// }
 
-let get = function() {
-  //let res = "oho"
-  db.get(manu['@id'], { '@context': manu['@context'] }, consoleCallback)
+// let consoleCallback =  function(err,data){
+//   let result = `${JSON.stringify(data)}`
+//   // console.log("àààààààà result", result)
+//   if(err){
+//     return err
+//   }else{
+//     return result
+//   }
 
-  //
-  // , function(err, obj) {
-  //   console.log(obj)
-  //   return  obj
-  //   // obj will be the very same of the manu object
-  //   //console.log("#########################\n YOU GOT IT ! \n", obj)
-  //   //  return obj
-  // });
-  // return "OK MAN "+`${res}`
-  return "get done"
-}
-
-let consoleCallback = function(err,data){
-  console.log("BIP IS ", data)
-  return data
-}
+// }
 
 let context = {
   "ls": "hum hum this should show",
   "cd": "should change dir",
   "say": say,
-  "put": put,
-  "get": get
+  // "put": put,
+  // "get": get
 }
 
 // A remote node repl that you can telnet to!
@@ -80,7 +65,7 @@ export { Repl }
 class Repl{
   constructor(options = {}) {
     Object.assign(context, options.context)
-    this.db = db = options.db
+    univers = options.univers
     this.init()
     // return "---- done"
   }
@@ -107,7 +92,7 @@ class Repl{
     console.log("###try say('truc') ")
 
     // A "local" node repl with a custom prompt
-    const local = repl.start('node::local> ');
+    let local = this.local =  repl.start('node::local> ');
     this.defineCommands(local)
 
     // Exposing the function "mood" to the local REPL's context.
@@ -130,7 +115,29 @@ class Repl{
       console.log('Goodbye the server is closed!');
       this.close();
     });
+    server.defineCommand('put', {
+      help: 'Put',
+      async action(data){
+        console.log('put');
+        let res = await univers.put()
+        console.log('put  after', res)
+        this.displayPrompt();
+      }
+
+    });
+    server.defineCommand('get', {
+      help: 'get',
+      async action(data){
+        console.log('get before');
+        let res = await univers.put()
+        console.log('get after', res);
+        this.displayPrompt();
+      }
+    });
 
 
+  }
+  displayPrompt(){
+    this.local.displayPrompt()
   }
 }

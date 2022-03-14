@@ -1,5 +1,5 @@
 {
-  "name": "levelgraph-jsonld",
+  "name": "native",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,6 +13,6 @@
   "dependencies": {
     "level": "^7.0.1",
     "levelgraph": "^3.0.0",
-    "levelgraph-jsonld": "^1.2.0"
+    "levelgraph-jsonld": "github:scenaristeur/levelgraph-jsonld"
   }
 }

@@ -27,11 +27,24 @@ var manu = {
 };
 
 univers.put(manu, function(err, obj) {
-  console.log("--obj", obj)
+  err ? console.log(err) : console.log("--obj", obj)
   // do something after the obj is inserted
 });
 
-univers.put(data, function(err, obj) {
-  console.log("--data", obj)
-  // do something after the obj is inserted
-});
+
+
+univers.get(manu['@id'], { '@context': manu['@context'] }, display)
+//  {
+//   err ? console.log(err) : console.log("REPONSE GET --obj", obj)
+//   // do something after the obj is inserted
+// });
+
+
+function display(err, data){
+  err ? console.log("ERROR",err) : console.log("RESULT",data)
+}
+
+// univers.put(data, function(err, obj) {
+//   console.log("--data", obj)
+//   // do something after the obj is inserted
+// });

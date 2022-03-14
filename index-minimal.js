@@ -12,14 +12,14 @@ let user = new User()
 
 
 
-let _univers = new Univers()
-let jlb = _univers.jsonld_base // jsonld_base
-let repl = new Repl({db: jlb})
+let univers = new Univers()
+//let jlb = _univers.jsonld_base // jsonld_base
+let repl = new Repl({univers: univers})
 
 if (debug == true){
   core.debug()
   user.debug()
-  _univers.debug()
+  univers.debug()
   repl.debug()
 }
 
@@ -28,3 +28,6 @@ console.log("\n---------------------------- OS minimal is running\n")
 
 console.log("use Ctrl+C two times to exit\n")
 console.log("!!!!!!\n!!!!!!\n!!!!!! Press Enter to show the prompt if not available\n!!!!!!\n!!!!!!\n!!!!!!\n")
+
+
+repl.displayPrompt()
