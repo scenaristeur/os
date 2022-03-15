@@ -47,6 +47,9 @@ class Prompt extends Template{
         case '\u001B\u005B\u0044':
         process.stdout.write('left');
         break;
+        case '\x7F':
+        process.stdout.write('\noups not implemented backspace yet \n');
+        break;
         case '\u0003': // ctrl-c
         module.sendToCore({action: "exit", raw: module.raw, history: module.history})
         break;

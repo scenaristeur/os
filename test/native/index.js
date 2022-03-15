@@ -79,6 +79,7 @@ var paris = 'http://dbpedia.org/resource/Paris';
 
 function search(data){
   console.log(data)
+  console.log("db",db)
   db.search([
     {
       subject: manu['@id'],

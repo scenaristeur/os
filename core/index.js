@@ -16,23 +16,13 @@ class Core extends Template{
     this.language = process.env.LANGUAGE
     this.prompt = new Prompt({core: this})
     this.command = new Command({core: this})
-    console.log(this.command)
   }
   onPrompt(data){
-    switch (data.action) {
-      case "exit":
-      process.exit();
-      break;
-      case "enter":
-      if (debug) console.log("from prompt enter", data.raw)
-      this.command.onEnter(data)
-      break;
-      case "raw":
-      if (debug) console.log("from prompt raw", data.raw)
-      this.command.onRaw(data)
-      break;
-      default:
-      if (debug) console.log("UNKNOWN from prompt", data)
+    if (data.action == 'exit'){
+      process.exit()
+    }
+    else{
+      this.command.onPrompt(data)
     }
   }
 }
