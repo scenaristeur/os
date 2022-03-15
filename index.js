@@ -1,3 +1,5 @@
-console.log("---------------------------- OS funny is running\n")
-import './index-minimal.js'
-// + import colors and other funny tools
+// minimal os tools
+let debug = true
+import { Core } from './core/index.js';
+
+let core = new Core()

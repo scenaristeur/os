@@ -181,3 +181,7 @@ neurone Neurone {
         ]
       }
       ```
+
+# basic system
+- every minute / debrayable : anticipe/propose/attends/reponse
+- prompt listen rawstdin stream -> autocomplete -> command --> db

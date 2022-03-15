@@ -1,0 +1,41 @@
+import { v4 as uuidv4 } from 'uuid';
+export default
+{
+  "@context": {
+    // "as": "https://www.w3.org/ns/activitystreams#",
+    "os": "https://scenaristeur.github.io/os#",
+    "id": "@id",
+    "type": "@type",
+    "name": "os:name",
+    "age": "os:age",
+    "url": "os:url",
+    "privacy": "os:privacy",
+    "type": "os:type",
+    "properties": "os:properties",
+    "links": "os:links",
+    "synapses": "os:synapses",
+    "created": "os:created",
+    "updated": "os:updated",
+    "synchronized": "os:synchronized",
+    "todo": "os:todo",
+    "action": "os_action",
+    "parent": "os_parent",
+    "next_action": "os:next_action"
+  },
+  "id": uuidv4(),
+  "name": "" ,
+  "age": 0 ,
+  "url": "",
+  "privacy": 'private',
+  "type": null,
+  "properties": [],
+  "links": [],
+  "synapses": [],
+  "created": Date.now(),
+  "updated": null,
+  "synchronized": null,
+  "todo": null,
+  "action": null,
+  "parent": null,
+  "next_action": null
+}
