@@ -53,20 +53,8 @@ class LevelgraphJsonld extends Template {
     super(options)
     this.type = "levelgraphJsonld"
     this.db = db
-    this.lastResponseArray = null
-    this.lastResponseObject = null
   }
-  put(data){
-    if(debug) console.log("on put jsonld", data)
-  }
-  get(data){
-    if(debug) console.log("on get jsonld", data)
-    this.db.jsonld.get(data, { '@context': manu['@context'] }, this.display)
-  }
-  test(data){
-    this.putmanu(data)
-    this.getmanu(data)
-  }
+
 
   onCommand(data){
     let raw = data.raw
@@ -76,12 +64,13 @@ class LevelgraphJsonld extends Template {
       c.array = raw.split('.')
       c.index = c.array[0]
       //if(debug) console.log("number", raw, c)
-      this.choice(c)
+      this.core.choice(c)
 
     }else{
       c.full = raw
       c.array = raw.split(' ')
       c.command = c.array[0]
+      c.data = data
       if(debug) console.log(c)
 
       switch (c.command) {
@@ -103,6 +92,9 @@ class LevelgraphJsonld extends Template {
         case 'find':
         this.find(c)
         break;
+        case 'last':
+        this.last(c)
+        break;
         default:
         console.log("unknown", c)
       }
@@ -110,21 +102,9 @@ class LevelgraphJsonld extends Template {
   }
 
 
-  display(err, data){
-    err ? console.log("\n-----ERROR\n",err) : console.log("\n-----RESULT\n",data)
-  }
-
-  choice(c){
-    if(this.lastResponseArray[c.index] != undefined){
-      let subject = this.lastResponseArray[c.index].subject
-      if(debug)console.log("choice",subject)
-      if(debug)console.log('todo get number after dot to to through le result')
-      this.get(subject)
-    }else{
-      console.log("no subject at "+c.index)
-    }
-  }
-
+  //////////////////////////
+  //CLI : ls, find, search ...
+  ///////////////////////////
   ls(data){
     if(debug) console.log(data)
     let module = this
@@ -138,7 +118,7 @@ class LevelgraphJsonld extends Template {
     ], function(err, solution) {
       console.log(err),
       console.log(solution)
-      module.displayList({header: "LS: ", list: solution})
+      module.core.displayList({header: "LS: ", list: solution})
     });
   }
 
@@ -160,7 +140,7 @@ class LevelgraphJsonld extends Template {
       }
     }, function process(err, results) {
 
-      module.displayList({header: "FINDING "+term, list: results})
+      module.core.displayList({header: "FINDING "+term, list: results})
 
 
       // results will not contain any triples that
@@ -169,25 +149,9 @@ class LevelgraphJsonld extends Template {
   }
 
 
-  displayList(data){
-    console.clear()
-    let predicate_short = true
-    this.lastResponseArray = data.list
-    if(data.header)console.log("------------\n",data.header,"\n")
-    console.log("------------\n")
-    for (let i= 0; i < data.list.length ; i++){
-      let r = data.list[i]
-      if(r.subject != undefined && r.predicate != undefined && r.subject != undefined)
-      {
-        let pred = predicate_short ? r.predicate.substring(r.predicate.lastIndexOf('/') + 1) :  r.predicate
-        console.log(i,r.subject, "\t\t",i+.1, pred , "\t\t",i+.2, r.object )
-      } else{
-        console.log(r)
-      }
 
-    }
-    console.log("\n------------\n")
-  }
+
+
 
 
   search(data){
@@ -213,7 +177,7 @@ class LevelgraphJsonld extends Template {
 
       console.log(err),
       console.log(results)
-      module.displayList({header: "SERCH "+ "todo parametrized search", list: results})
+      module.core.displayList({header: "SEARCH "+ "todo parametrized search", list: results})
       // solution contains
       // [{
       //   webid: 'http://bblfish.net/people/henry/card#me',
@@ -225,13 +189,48 @@ class LevelgraphJsonld extends Template {
     });
   }
 
+
+
+
+
+
+  ///////////////////////////////////////////////////////////////////////
+  //QUERIES
+  /////////////////////////////////////
+
+  put(data){
+    if(debug) console.log("on put jsonld", data)
+  }
+  get(data){
+
+  if(debug) console.log("on get jsonld", data)
+  if (data.data.subject == undefined ){
+    console.log("error, no parameter data.data.subject for the get command", data)
+  }else{
+
+    this.db.jsonld.get(data.data.subject, { '@context': manu['@context'] }, this.core.display.bind(this))
+  }
+  }
+
+
+
+
+  ////////////////////////
+  // TEST
+  //////////////////
+
+  test(data){
+    this.putmanu(data)
+    this.getmanu(data)
+  }
+
   getmanu (data){
     if(debug)  console.log("!!!GET", data)
-    if(debug)  this.db.jsonld.get(manu['@id'], { '@context': manu['@context'] }, this.display)
+    if(debug)  this.db.jsonld.get(manu['@id'], { '@context': manu['@context'] }, this.core.display)
   }
   putmanu(data){
     if(debug)  console.log("!!!PUT", data)
-    this.db.jsonld.put(manu, this.display)
+    this.db.jsonld.put(manu, this.core.display)
   }
 
 

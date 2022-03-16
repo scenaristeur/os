@@ -27,11 +27,17 @@ class Command extends Template {
   onEnter(data){
     if(debug) console.log("on enter command", data)
     if(debug) console.log(this.core.bases)
-    for (const b of Object.values(this.core.bases)){
-      if(debug) console.log(b.active, b.type, b.name)
-      if(b.active){
-        //  b.test(data)
-        b.onCommand(data)
+
+
+    if(data.raw == "last"){
+      this.core.onCommand(data)
+    }else{
+      for (const b of Object.values(this.core.bases)){
+        if(debug) console.log(b.active, b.type, b.name)
+        if(b.active){
+          //  b.test(data)
+          b.onCommand(data)
+        }
       }
     }
   }

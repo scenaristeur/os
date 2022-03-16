@@ -11,6 +11,21 @@
 - https://www.google.com/search?q=man+linux
 
 
+
+
+# levelgraph-jsonld commands
+```
+put :
+get :
+search :
+ls : list objects
+test :
+find : (example : find lulu or find henry)
+last :  get last objects
+```
+
+
+
 # CRUD commands
 - for each entities, we can use CRUD commands (CREATE, READ, UPDATE, DELETE)
 - for example `create world toto`+Enter will create a world named "toto"
