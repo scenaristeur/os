@@ -95,11 +95,66 @@ class LevelgraphJsonld extends Template {
         case 'last':
         this.last(c)
         break;
+        case 'add':
+        this.add(c)
+        break;
         default:
-        console.log("unknown", c)
+        console.log("unknown levelgraph command", c)
       }
     }
   }
+
+
+  ///////////////////////////////////////////////////////////////////////
+  //QUERIES
+  /////////////////////////////////////
+  add(data){
+    console.log("command add", data)
+    console.log(this.core.lastResponseObject,"\n", this.core.lastResponseObject['@id'])
+    // let key = data.array[1]
+    // let add_update = {"@id" : this.core.lastResponseObject['@id']}
+    // add_update[data.array[1]] = data.array[2]
+
+    var nested = {
+      // "@context": {
+      //   "name": "http://xmlns.com/foaf/0.1/name",
+      //   "knows": "http://xmlns.com/foaf/0.1/knows"
+      // },
+      // "@id": "http://matteocollina.com",
+      // "name": "Matteo",
+      // "knows": [{
+      //   "name": "Daniele"
+      // }, {
+      //   "name": "Lucio"
+      // }]
+    };
+    nested['@context'] = manu['@context']
+    nested['@id'] = this.core.lastResponseObject['@id']
+    nested[data.array[1]] = data.array[2]
+
+    this.db.jsonld.put(nested, { '@context': manu['@context'] }, this.core.display.bind(this))
+
+
+  }
+
+
+
+  put(data){
+    if(debug) console.log("on put jsonld", data)
+  }
+  get(data){
+
+    if(debug) console.log("on get jsonld", data)
+    if (data.data.subject == undefined ){
+      console.log("error, no parameter data.data.subject for the get command", data)
+    }else{
+
+      this.db.jsonld.get(data.data.subject, { '@context': manu['@context'] }, this.core.display.bind(this))
+    }
+  }
+
+
+
 
 
   //////////////////////////
@@ -194,24 +249,6 @@ class LevelgraphJsonld extends Template {
 
 
 
-  ///////////////////////////////////////////////////////////////////////
-  //QUERIES
-  /////////////////////////////////////
-
-  put(data){
-    if(debug) console.log("on put jsonld", data)
-  }
-  get(data){
-
-  if(debug) console.log("on get jsonld", data)
-  if (data.data.subject == undefined ){
-    console.log("error, no parameter data.data.subject for the get command", data)
-  }else{
-
-    this.db.jsonld.get(data.data.subject, { '@context': manu['@context'] }, this.core.display.bind(this))
-  }
-  }
-
 
 
 
@@ -226,11 +263,11 @@ class LevelgraphJsonld extends Template {
 
   getmanu (data){
     if(debug)  console.log("!!!GET", data)
-    if(debug)  this.db.jsonld.get(manu['@id'], { '@context': manu['@context'] }, this.core.display)
+    if(debug)  this.db.jsonld.get(manu['@id'], { '@context': manu['@context'] }, this.core.display.bind(this))
   }
   putmanu(data){
     if(debug)  console.log("!!!PUT", data)
-    this.db.jsonld.put(manu, this.core.display)
+    this.db.jsonld.put(manu, this.core.display.bind(this))
   }
 
 

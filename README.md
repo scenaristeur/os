@@ -24,6 +24,88 @@ find : (example : find lulu or find henry)
 last :  get last objects
 ```
 
+# adding a property known by the @ context : exemple name
+
+
+```
+
+try 'test' then 'ls' or 'find henry' and '2' for selecting
+
+ls // we list all
+
+------------
+ LS:  
+
+------------
+
+0 https://my-profile.eu/people/deiu/card#me 		 0.1 name 		 0.2 "Andrei Vlad Sambra"
+1 _:3d339be0-a54d-11ec-a55f-3d486699ec24 		 1.1 name 		 1.2 "Daniele"
+2 _:6656eb80-a54d-11ec-b48c-0d182fd00ed5 		 2.1 name 		 2.2 "Daniele"
+[...]
+11 http://melvincarvalho.com/#me 		 11.1 name 		 11.2 "Melvin Carvalho"
+[...]
+------------
+
+11 // we select 11
+
+
+------------------------RESULT - 1647451512645
+ {
+  '@context': {
+    '@vocab': 'http://xmlns.com/foaf/0.1/',
+    homepage: { '@type': '@id' },
+    knows: { '@type': '@id' },
+    based_near: { '@type': '@id' }
+  },
+  '@id': 'http://melvincarvalho.com/#me',
+  based_near: 'http://dbpedia.org/resource/Honolulu',
+  homepage: 'http://lojkkujhye',
+  name: 'Melvin Carvalho'
+}
+========================RESULT
+
+
+add name test  // we add name test
+
+ls // list all
+
+------------
+ LS:  
+
+------------
+
+0 https://my-profile.eu/people/deiu/card#me 		 0.1 name 		 0.2 "Andrei Vlad Sambra"
+1 _:3d339be0-a54d-11ec-a55f-3d486699ec24 		 1.1 name 		 1.2 "Daniele"
+2 _:6656eb80-a54d-11ec-b48c-0d182fd00ed5 		 2.1 name 		 2.2 "Daniele"
+[...]
+11 http://melvincarvalho.com/#me 		 11.1 name 		 11.2 "Melvin Carvalho"
+12 http://bblfish.net/people/henry/card#me 		 12.1 name 		 12.2 "Tchou"
+13 http://bblfish.net/people/henry/card#me 		 13.1 name 		 13.2 "blop"
+14 http://melvincarvalho.com/#me 		 14.1 name 		 14.2 "test"                // name test has been added
+
+[...]
+
+------------
+
+11 // we select the number 11
+
+------------------------RESULT - 1647451530902
+ {
+  '@context': {
+    '@vocab': 'http://xmlns.com/foaf/0.1/',
+    homepage: { '@type': '@id' },
+    knows: { '@type': '@id' },
+    based_near: { '@type': '@id' }
+  },
+  '@id': 'http://melvincarvalho.com/#me',
+  based_near: 'http://dbpedia.org/resource/Honolulu',
+  homepage: 'http://lojkkujhye',
+  name: [ 'Melvin Carvalho', 'test' ]
+}
+========================RESULT
+
+```
+
 
 
 # CRUD commands
