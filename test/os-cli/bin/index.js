@@ -22,8 +22,10 @@ const start = require('../lib/start');
 program
 .description('Init levelgraph-jsonld database')
 .action(async function () {
+  console.clear()
   let conf = await config();
   console.log("my config", conf)
+  console.log("\n-----\nBASES",conf.bases)
   await init()
 });
 
