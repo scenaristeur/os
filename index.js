@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // minimal os tools
 let debug = true
 import { Core } from './core/index.js';

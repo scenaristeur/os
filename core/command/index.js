@@ -1,6 +1,6 @@
 import { Template } from "../template/index.js"
 export { Command }
-let debug = false
+let debug = true
 
 class Command extends Template {
   constructor(options = {}) {
@@ -25,7 +25,7 @@ class Command extends Template {
     }
   }
   onEnter(c){
-    if(debug) console.log("on enter command", c)
+  //  if(debug) console.log("on enter command", c)
 
 
     if(!(Number.isNaN(parseFloat(c.raw)))) { // check if float https://thispointer.com/check-if-string-is-a-number-in-javascript/
@@ -61,6 +61,28 @@ class Command extends Template {
     }
   }
   onRaw(data){
+    console.log("RAWDATA", data)
+    let rawComm = null
+    data.raw.endsWith('\x16') ? rawComm = "paste" : "" // Ctrl +v
+    /*
+    \x01 : Ctrl+a
+
+    \x1A : Ctrl+z
+
+    */
+
+
+
+    if(rawComm != null){
+
+      console.log(rawComm)
+
+    }
+
+
+
+
+
     //  if(debug) console.log("on raw command", data)
   }
 }
