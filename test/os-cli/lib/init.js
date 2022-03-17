@@ -1,5 +1,5 @@
 
-module.exports = async function () {
+module.exports = async function (config) {
 
-console.log("init")
+console.log("init", config)
 };

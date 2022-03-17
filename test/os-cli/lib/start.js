@@ -20,9 +20,13 @@ const prompt2 = () => input({
 // let answer
 
 const prompt = () => autocomplete({
-  header: yosay('What can I do for you？'),
+  header: yosay('What can I do for you？\n\
+  - neurone is the most basic intelligent entity\n\
+  - brain is a group of neurone\n\
+  - in a world there are brains and a lot of other things.'),
   message: '=>',
-  choices: ['neurone', 'brain', 'world', 'other', 'quit']
+  hint: 'Enter by class or by action',
+  choices: ['neurone', 'brain', 'world', 'other', 'create', 'read', 'update', 'delete', 'quit']
 });
 
 // const prompt2 = () => autocomplete({
@@ -37,8 +41,8 @@ function loop_root() {
       prompt2().then(name => {
         console.log('with name',name)
         // if (answer1 === 'BACK') {
-          // TODO can not work?
-          loop_root();
+        // TODO can not work?
+        loop_root();
         // }
       }).catch(console.error);
     }

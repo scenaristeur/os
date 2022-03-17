@@ -9,7 +9,7 @@ const browse = require('../lib/browse');
 const neurone = require('../lib/neurone');
 const start = require('../lib/start');
 
-
+let conf
 // print topic menu
 // program
 // .command('init')
@@ -23,11 +23,15 @@ program
 .description('Init levelgraph-jsonld database')
 .action(async function () {
   console.clear()
-  let conf = await config();
-  console.log("my config", conf)
+  conf = await config();
+  // console.log("my config", conf)
   console.log("\n-----\nBASES",conf.bases)
-  await init()
-});
+  await init(conf.bases.Universe)
+  await start(conf.bases.Universe)
+}).addHelpText('after', `
+
+Example call:
+  $ os --help`);
 
 
 
