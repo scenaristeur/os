@@ -12,7 +12,7 @@ class Core extends Template{
   constructor(options = {}) {
     super(options)
     this.type = "core"
-    this.core_commands = ['cp', 'paste', 'last']
+    this.core_commands = ['copy', 'cp', 'paste', 'last', 'delete', 'del', 'move', 'mv']
     this.pwd =  process.env.PWD
     this.lang = process.env.LANG
     this.language = process.env.LANGUAGE
@@ -52,14 +52,22 @@ class Core extends Template{
         this.last(c)
         break;
         case 'cp':
+        case 'copy':
         this.cp(c)
         break;
+        case 'paste':
+        this.paste(c)
+        break;
         default:
-        console.log("unknown", c)
+        console.log("unknown CORE COMMAND", c)
       }
     }
   }
 
+
+  paste(c){
+    console.log("what to paste", this.clipboard)
+  }
 
   choice(c){
     if(this.lastResponseArray[c.index] != undefined){

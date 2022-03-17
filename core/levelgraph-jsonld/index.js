@@ -127,7 +127,9 @@ class LevelgraphJsonld extends Template {
 
   add(data){
     console.log("command add", data)
-    console.log(this.core.lastResponseObject,"\n", this.core.lastResponseObject['@id'])
+    console.log(this.core.lastResponseObject,"\n",
+    this.core.lastResponseObject,
+    this.core.lastResponseObject['@id'])
     // let key = data.array[1]
     // let add_update = {"@id" : this.core.lastResponseObject['@id']}
     // add_update[data.array[1]] = data.array[2]
@@ -148,6 +150,7 @@ class LevelgraphJsonld extends Template {
     nested['@context'] = manu['@context']
     nested['@id'] = this.core.lastResponseObject['@id']
     nested[data.array[1]] = data.array[2]
+    console.log (nested)
 
     this.db.jsonld.put(nested, { '@context': manu['@context'] }, this.core.display.bind(this))
 
