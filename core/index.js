@@ -118,7 +118,9 @@ class Core extends Template{
     if(err){
       console.log("\n-----ERROR\n",err)
     }else{
+      console.table(data)
       this.core.log({message: "RESULT", data: data})
+
     }
     this.core.lastResponseObject = data
     this.core.objectsHistory.unshift(this.core.lastResponseObject)
@@ -136,6 +138,17 @@ class Core extends Template{
 
 
   displayList(data){
+    console.log('Terminal size: ' + process.stdout.columns + 'x' + process.stdout.rows);
+    // (process.stdout.columns || defaultColumns)
+    if (process.stdout.columns > 50 ){
+      this.displayListTable(data)
+    }else{
+      this.displayListStretch(data)
+    }
+
+  }
+
+  displayListTable(data){
     this.lastResponseArray = data.list
     let list  = data.list.map(function(x, index){
 
@@ -159,18 +172,18 @@ class Core extends Template{
     //   }))
     console.table(list)
   }
-  displayList1(data){
+  displayListStretch(data){
     console.clear()
     let predicate_short = true
     this.lastResponseArray = data.list
-    if(data.header)console.log("------------\n",data.header,"\n")
+    if(data.header)console.log("--------------------------------------------------\n",data.header,"\n")
     console.log("------------\n")
     for (let i= 0; i < data.list.length ; i++){
       let r = data.list[i]
       if(r.subject != undefined && r.predicate != undefined && r.subject != undefined)
       {
         let pred = predicate_short ? r.predicate.substring(r.predicate.lastIndexOf('/') + 1) :  r.predicate
-        console.log(i,r.subject, "\t\t",i+.1, pred , "\t\t",i+.2, r.object )
+        console.log(i,r.subject, "\n\t",i+.1, pred , "\n\t\t",i+.2, r.object )
       } else{
         console.log(r)
       }

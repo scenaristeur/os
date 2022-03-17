@@ -1,6 +1,6 @@
 import { Template } from "../template/index.js"
 export { Command }
-let debug = true
+let debug = false
 
 class Command extends Template {
   constructor(options = {}) {
@@ -45,9 +45,9 @@ class Command extends Template {
 
       if(debug) console.log(this.core.bases)
 
-      console.log("core commands ", this.core.core_commands, c.command, this.core.core_commands.includes(c.command))
+      // console.log("core commands ", this.core.core_commands, c.command, this.core.core_commands.includes(c.command))
       if(this.core.core_commands.includes(c.command)){
-        console.log(c.command , "is a core command")
+        // console.log(c.command , "is a core command")
         this.core.onCommand(c)
       }else{
         for (const b of Object.values(this.core.bases)){
