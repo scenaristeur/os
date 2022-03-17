@@ -5,12 +5,14 @@ import { Command } from './command/index.js';
 
 let debug = false
 
+
 export { Core }
 
 class Core extends Template{
   constructor(options = {}) {
     super(options)
     this.type = "core"
+    this.core_commands = ['cp', 'paste', 'last']
     this.pwd =  process.env.PWD
     this.lang = process.env.LANG
     this.language = process.env.LANGUAGE
@@ -18,6 +20,7 @@ class Core extends Template{
     this.command = new Command({core: this})
     this.lastResponseArray = null
     this.lastResponseObject = null
+    this.clipboard = []
     this.objectsHistory = []
     this.populateBaseWithCore()
   }
@@ -30,6 +33,7 @@ class Core extends Template{
   onCommand(data){
     let raw = data.raw
     let c = {}
+
 
     if(!(Number.isNaN(parseFloat(raw)))) { // check if float https://thispointer.com/check-if-string-is-a-number-in-javascript/
       c.array = raw.split('.')
@@ -46,6 +50,9 @@ class Core extends Template{
       switch (c.command) {
         case 'last':
         this.last(c)
+        break;
+        case 'cp':
+        this.cp(c)
         break;
         default:
         console.log("unknown", c)
@@ -85,6 +92,23 @@ class Core extends Template{
     this.displayIdList(this.objectsHistory)
   }
 
+  cp(data){
+    let param = data.array[1]
+    let p = param.split('.')
+    console.log(p)
+    console.log(this.lastResponseArray[p[0]])
+    let triple = this.lastResponseArray[p[0]]
+    let val = triple.subject
+    if(p[1] != undefined){
+      if (p[1] == 1) val = triple.predicate
+      if (p[1] == 2) val = triple.object
+      //val = Object.entries(triple).map(x=> x[p[1]])
+    }
+    console.log("copied", val)
+    this.clipboard.unshift(val)
+    console.log("clipboard", this.clipboard)
+  }
+
 
   /////////////////////////////////////////////
   //DISPLAY
@@ -110,7 +134,32 @@ class Core extends Template{
     }
   }
 
+
   displayList(data){
+    this.lastResponseArray = data.list
+    let list  = data.list.map(function(x, index){
+
+      let l =
+      {
+        //  id: index,
+        subject: x.subject,
+        p_id: index+.1,
+        predicate: x.predicate.substring(x.predicate.lastIndexOf('/') + 1),
+        o_id: index+.2,
+        object: x.object
+      }
+      return l
+
+    })
+    // let list  = data.list.map((x, index) => Object.assign({}, x,
+    //   {
+    //     id: index,
+    //     predicate: index+".1"+x.predicate.substring(x.predicate.lastIndexOf('/') + 1),
+    //     object: index+.2+x.object
+    //   }))
+    console.table(list)
+  }
+  displayList1(data){
     console.clear()
     let predicate_short = true
     this.lastResponseArray = data.list

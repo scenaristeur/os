@@ -9,8 +9,20 @@ const level      = require('level'),
 universDB     = level('./universDB'),
 levelgraph = require('levelgraph'),
 jsonld     = require('levelgraph-jsonld'),
-db         = jsonld(levelgraph(universDB));
+opts       = { base: 'http://local/base' },
+db         = jsonld(levelgraph(universDB), opts);
 
+
+var modeleNew = {
+  "@context": {
+    "@vocab": "http://xmlns.com/foaf/0.1/",
+    // "homepage": { "@type": "@id" },
+    // "knows": { "@type": "@id" },
+    // "based_near": { "@type": "@id" }
+  },
+  //"@id": "http://manu.sporny.org#person",
+  "name": "Manu Sporny",
+};
 
 
 var manu = {
@@ -56,58 +68,63 @@ class LevelgraphJsonld extends Template {
   }
 
 
-  onCommand(data){
-    let raw = data.raw
-    let c = {}
+  onCommand(c){
 
-    if(!(Number.isNaN(parseFloat(raw)))) { // check if float https://thispointer.com/check-if-string-is-a-number-in-javascript/
-      c.array = raw.split('.')
-      c.index = c.array[0]
-      //if(debug) console.log("number", raw, c)
-      this.core.choice(c)
 
-    }else{
-      c.full = raw
-      c.array = raw.split(' ')
-      c.command = c.array[0]
-      c.data = data
-      if(debug) console.log(c)
+    if(debug) console.log(c)
 
-      switch (c.command) {
-        case "put":
-        this.put(c)
-        break;
-        case 'get':
-        this.get(c)
-        break;
-        case 'search':
-        this.search(c)
-        break;
-        case 'ls':
-        this.ls(c)
-        break;
-        case 'test':
-        this.test(c)
-        break;
-        case 'find':
-        this.find(c)
-        break;
-        case 'last':
-        this.last(c)
-        break;
-        case 'add':
-        this.add(c)
-        break;
-        default:
-        console.log("unknown levelgraph command", c)
-      }
+    switch (c.command) {
+      case "put":
+      this.put(c)
+      break;
+      case 'get':
+      this.get(c)
+      break;
+      case 'search':
+      this.search(c)
+      break;
+      case 'ls':
+      this.ls(c)
+      break;
+      case 'test':
+      this.test(c)
+      break;
+      case 'find':
+      this.find(c)
+      break;
+      case 'last':
+      this.last(c)
+      break;
+      case 'add':
+      this.add(c)
+      break;
+      case 'create':
+      case 'new':
+      this.new(c)
+      break;
+      default:
+      console.log("unknown levelgraph command", c)
     }
+
   }
 
 
   ///////////////////////////////////////////////////////////////////////
   //QUERIES
   /////////////////////////////////////
+
+  new(data){
+    console.log("new", data)
+    let name = data.array[1]
+    console.log("new with name", name)
+    let neurone = modeleNew
+    neurone['@id'] = opts.base+'/'+name
+    neurone.name = name
+    this.db.jsonld.put(neurone, opts,  this.core.display.bind(this))
+  }
+
+
+
   add(data){
     console.log("command add", data)
     console.log(this.core.lastResponseObject,"\n", this.core.lastResponseObject['@id'])
@@ -145,11 +162,11 @@ class LevelgraphJsonld extends Template {
   get(data){
 
     if(debug) console.log("on get jsonld", data)
-    if (data.data.subject == undefined ){
-      console.log("error, no parameter data.data.subject for the get command", data)
+    if (data.subject == undefined ){
+      console.log("error, no parameter data.subject for the get command", data)
     }else{
 
-      this.db.jsonld.get(data.data.subject, { '@context': manu['@context'] }, this.core.display.bind(this))
+      this.db.jsonld.get(data.subject, { '@context': manu['@context'] }, this.core.display.bind(this))
     }
   }
 

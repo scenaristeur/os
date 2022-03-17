@@ -1,6 +1,6 @@
 import { Template } from "../template/index.js"
 export { Command }
-let debug = false
+let debug = true
 
 class Command extends Template {
   constructor(options = {}) {
@@ -24,19 +24,38 @@ class Command extends Template {
       if (debug) console.log(" UNKNOWN from prompt", data)
     }
   }
-  onEnter(data){
-    if(debug) console.log("on enter command", data)
-    if(debug) console.log(this.core.bases)
+  onEnter(c){
+    if(debug) console.log("on enter command", c)
 
 
-    if(data.raw == "last"){
-      this.core.onCommand(data)
+    if(!(Number.isNaN(parseFloat(c.raw)))) { // check if float https://thispointer.com/check-if-string-is-a-number-in-javascript/
+      c.array = c.raw.split('.')
+      c.index = c.array[0]
+      //if(debug) console.log("number", raw, c)
+      this.core.choice(c)
+
     }else{
-      for (const b of Object.values(this.core.bases)){
-        if(debug) console.log(b.active, b.type, b.name)
-        if(b.active){
-          //  b.test(data)
-          b.onCommand(data)
+      c.full = c.raw
+      c.array = c.raw.split(' ')
+      c.command = c.array[0]
+      //c.data = data
+
+
+
+
+      if(debug) console.log(this.core.bases)
+
+      console.log("core commands ", this.core.core_commands, c.command, this.core.core_commands.includes(c.command))
+      if(this.core.core_commands.includes(c.command)){
+        console.log(c.command , "is a core command")
+        this.core.onCommand(c)
+      }else{
+        for (const b of Object.values(this.core.bases)){
+          if(debug) console.log(b.active, b.type, b.name)
+          if(b.active){
+            //  b.test(data)
+            b.onCommand(c)
+          }
         }
       }
     }
