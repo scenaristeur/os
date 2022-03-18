@@ -4,9 +4,10 @@ const require = createRequire(import.meta.url);
 
 import { Template } from "../template/index.js"
 export { LevelgraphJsonld }
-
-const level      = require('level'),
-universDB     = level('./universDB'),
+let home = process.env.HOME
+let path = home+"/.os/.universDB"
+const level   = require('level'),
+universDB     = level(path),
 levelgraph = require('levelgraph'),
 jsonld     = require('levelgraph-jsonld'),
 opts       = { base: 'http://local/base' },
