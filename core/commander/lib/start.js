@@ -42,7 +42,7 @@ const prompt = () => autocomplete({
   - "test" \n\
   - then "find henry"'),
   message: '=>',
-  hint: 'try "test", then "ls" or "find lulu"',
+  hint: 'try "test" to initialize the base, then "ls" or "find + lulu"',
   choices: ['new',  'ls', 'find', 'test', ]
   //choices: ['test', 'neurone', 'brain', 'world', 'other', 'create', 'read', 'update', 'delete', 'quit']
 });
