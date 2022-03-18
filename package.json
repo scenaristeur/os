@@ -12,7 +12,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "node index.js start"
+    "start" : "node index.js start",
+    "install": "npm install -g ./"
   },
   "repository": {
     "type": "git",
