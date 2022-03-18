@@ -1,0 +1,1 @@
+voir automerge-chat-demo

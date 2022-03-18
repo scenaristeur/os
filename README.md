@@ -287,3 +287,26 @@ neurone Neurone {
 # basic system
 - every minute / debrayable : anticipe/propose/attends/reponse
 - prompt listen rawstdin stream -> autocomplete -> command --> db
+
+
+# json editor
+- https://github.com/josdejong/jsoneditor
+
+# json server
+- https://bestofjs.org/projects/json-server
+
+# ipfs notificatio realtime
+- https://docs.ipfs.io/how-to/create-simple-chat-app/
+- https://github.com/TheDiscordian/browser-ipfs-chat
+
+https://medium.com/simpleid-dev-tools/tutorial-how-to-build-an-ipfs-text-notification-app-d7e1a89c784b
+- https://docs.libp2p.io/concepts/publish-subscribe/
+
+- ipfs pubsub room
+- https://www.npmjs.com/package/ipfs-pubsub-room
+
+# remove all node_modules
+- https://stackoverflow.com/questions/42950501/delete-node-modules-folder-recursively-from-a-specified-path-using-command-line
+
+
+find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +
