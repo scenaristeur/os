@@ -11,6 +11,8 @@ import { v4 as uuidv4 } from 'uuid';
 const { Input, Confirm , Snippet, autocomplete } = require('enquirer');
 const yosay = require('yosay');
 const semver = require('semver');
+// import openEditor from 'open-editor';
+import open from 'open';
 // const { Snippet } = require('enquirer');
 
 // import { Core } from '../../../core/index.js';
@@ -40,10 +42,10 @@ const prompt = () => autocomplete({
   header: yosay('What can I do for you？\n\
   try: \n\
   - "test" \n\
-  - then "find henry"'),
+  - then "find" + henry'),
   message: '=>',
   hint: 'try "test" to initialize the base, then "ls" or "find + lulu"',
-  choices: ['new',  'ls', 'find', 'test', ]
+  choices: ['new',  'ls', 'find', 'test', 'touch instead of new ?', 'browser','editor','free (mode)', 'neurone (mode)', 'brain (mode)', 'world (mode)', '? help', 'quit' ]
   //choices: ['test', 'neurone', 'brain', 'world', 'other', 'create', 'read', 'update', 'delete', 'quit']
 });
 
@@ -51,7 +53,7 @@ const typePrompt = () => autocomplete({
   header: yosay('What do you want to create'),
   message: '=>',
   hint: 'neurone, brain, world',
-  choices: ['neurone', 'brain', 'world', 'other']
+  choices: ['neurone', 'brain', 'world', 'other', 'back']
   //choices: ['test', 'neurone', 'brain', 'world', 'other', 'create', 'read', 'update', 'delete', 'quit']
 });
 
@@ -132,10 +134,14 @@ async function loop_root(opts) {
       case "new":
       console.log("new")
       let type = await typePrompt()
-      editionPrompt.fields.push({ name: 'type', initial: type})
-      let neurone = await editionPrompt.run()
-      console.log("Neurone", neurone)
-      await opts.commander.core.bases.levelgraphJsonld.create(neurone.result)
+      if (type == "back"){
+        loop_root(opts)
+      }else{
+        editionPrompt.fields.push({ name: 'type', initial: type})
+        let neurone = await editionPrompt.run()
+        console.log("Neurone", neurone)
+        await opts.commander.core.bases.levelgraphJsonld.create(neurone.result)
+      }
       break;
       case "ls":
       console.log("ls")
@@ -146,6 +152,25 @@ async function loop_root(opts) {
       let what = await whatPrompt.run()
       console.log(what)
       await opts.commander.core.bases.levelgraphJsonld.find({what: what})
+      break;
+      case "editor":
+      console.log("editor")
+      // await open('https://sindresorhus.com');
+      // Open an app
+      // console.log(JSON.stringify(openEditor, null, 2))
+
+      await open.openApp('atom',{arguments: ['README.md:8:5']});
+      // openEditor([
+      //   {
+      //     file: 'readme.md',
+      //     line: 10,
+      //     column: 2,
+      //   }
+      // ]);
+      break;
+      case "browser":
+      console.log("browser")
+      await open('https://scenaristeur.github.io/ipgs');
       break;
       default:
       console.log("unknown answer", answer)

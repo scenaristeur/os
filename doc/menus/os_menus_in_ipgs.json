@@ -1,0 +1,267 @@
+{
+  "nodes": [
+    {
+      "id": "#ls",
+      "label": "ls",
+      "color": {
+        "background": "#D2E5FF",
+        "border": "#2B7CE9"
+      },
+      "shape": "ellipse",
+      "built": true
+    },
+    {
+      "id": "#choice",
+      "label": "choice",
+      "color": {
+        "background": "#D2E5FF",
+        "border": "#2B7CE9"
+      },
+      "shape": "ellipse",
+      "built": true
+    },
+    {
+      "id": "#main",
+      "label": "main",
+      "color": {
+        "background": "#F2C511",
+        "border": "#E84B3C"
+      },
+      "shape": "ellipse",
+      "built": true,
+      "props": []
+    },
+    {
+      "id": "#find",
+      "label": "find",
+      "color": {
+        "background": "#D2E5FF",
+        "border": "#2B7CE9"
+      },
+      "shape": "ellipse",
+      "built": true
+    },
+    {
+      "id": "#editor",
+      "label": "editor",
+      "color": {
+        "background": "#D2E5FF",
+        "border": "#2B7CE9"
+      },
+      "shape": "ellipse",
+      "built": true
+    },
+    {
+      "id": "#browser",
+      "label": "browser",
+      "color": {
+        "background": "#D2E5FF",
+        "border": "#2B7CE9"
+      },
+      "shape": "ellipse",
+      "built": true
+    },
+    {
+      "id": "#save",
+      "label": "save",
+      "color": {
+        "background": "#D2E5FF",
+        "border": "#2B7CE9"
+      },
+      "shape": "ellipse",
+      "built": true
+    },
+    {
+      "id": "#close",
+      "label": "close",
+      "color": {
+        "background": "#D2E5FF",
+        "border": "#2B7CE9"
+      },
+      "shape": "ellipse",
+      "built": true
+    },
+    {
+      "id": "#add",
+      "label": "add",
+      "color": {
+        "background": "#D2E5FF",
+        "border": "#2B7CE9"
+      },
+      "shape": "ellipse",
+      "built": true
+    },
+    {
+      "id": "#edit",
+      "label": "edit",
+      "color": {
+        "background": "#D2E5FF",
+        "border": "#2B7CE9"
+      },
+      "shape": "ellipse",
+      "built": true
+    },
+    {
+      "id": "#remove",
+      "label": "remove",
+      "color": {
+        "background": "#D2E5FF",
+        "border": "#2B7CE9"
+      },
+      "shape": "ellipse",
+      "built": true
+    },
+    {
+      "id": "#delete",
+      "label": "delete",
+      "color": {
+        "background": "#D2E5FF",
+        "border": "#2B7CE9"
+      },
+      "shape": "ellipse",
+      "built": true
+    },
+    {
+      "id": "#search",
+      "label": "search",
+      "color": {
+        "background": "#D2E5FF",
+        "border": "#2B7CE9"
+      },
+      "shape": "ellipse",
+      "built": true
+    },
+    {
+      "id": "#enterCriterias",
+      "label": "enterCriterias",
+      "color": {
+        "background": "#D2E5FF",
+        "border": "#2B7CE9"
+      },
+      "shape": "ellipse",
+      "built": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "#ls",
+      "to": "#choice",
+      "label": "next",
+      "id": "f632e64d-342f-4923-b0ff-4948217056f1"
+    },
+    {
+      "from": "#main",
+      "to": "#ls",
+      "label": "next",
+      "id": "58259840-0789-45f9-9d8a-8e299f0fcdea"
+    },
+    {
+      "from": "#main",
+      "to": "#find",
+      "label": "next",
+      "id": "195d04e5-1b29-4b16-a921-01d7c6623e83"
+    },
+    {
+      "from": "#find",
+      "to": "#choice",
+      "label": "next",
+      "id": "bd99b74c-d54f-42ea-8daf-e4c30587dc4f"
+    },
+    {
+      "from": "#main",
+      "to": "#editor",
+      "label": "next",
+      "id": "175dfe68-e31f-4420-a598-92799e59e4ac"
+    },
+    {
+      "from": "#main",
+      "to": "#browser",
+      "label": "next",
+      "id": "e28af66a-f4ad-4abe-aa08-f99cf24043f3"
+    },
+    {
+      "from": "#browser",
+      "to": "#save",
+      "label": "action",
+      "id": "ea6a7a23-02f4-45cf-abec-a9ab735c2395"
+    },
+    {
+      "from": "#save",
+      "to": "#close",
+      "label": "next",
+      "id": "5309c406-fa2b-466c-96bd-8a9bc010020d"
+    },
+    {
+      "from": "#close",
+      "to": "#main",
+      "label": "next",
+      "id": "6c753a80-0e34-4d38-afe9-be88e57afe23"
+    },
+    {
+      "from": "#editor",
+      "to": "#save",
+      "label": "action",
+      "id": "65b86d12-c431-41ed-be6e-4382350466f3"
+    },
+    {
+      "from": "#save",
+      "to": "#close",
+      "label": "next",
+      "id": "3ce2195f-d242-4213-8580-575625cdfbe6"
+    },
+    {
+      "from": "#choice",
+      "to": "#editor",
+      "label": "next",
+      "id": "5a377d48-c70e-4c4d-8b75-d115046ce67c"
+    },
+    {
+      "from": "#choice",
+      "to": "#browser",
+      "label": "next",
+      "id": "84872291-07c1-4f35-bc90-4c8bef6e501e"
+    },
+    {
+      "from": "#choice",
+      "to": "#add",
+      "label": "next",
+      "id": "caa198bd-85a6-4114-b14f-8e6f78369d41"
+    },
+    {
+      "from": "#choice",
+      "to": "#edit",
+      "label": "next",
+      "id": "a66bd198-9729-4250-8c02-76f2214fef0a"
+    },
+    {
+      "from": "#choice",
+      "to": "#remove",
+      "label": "next",
+      "id": "2fcb6fea-ea81-4cfc-8c05-e0b72f1d6815"
+    },
+    {
+      "from": "#choice",
+      "to": "#delete",
+      "label": "next",
+      "id": "8a920bd4-a677-4fa9-bb69-2d10ae84b370"
+    },
+    {
+      "from": "#main",
+      "to": "#search",
+      "label": "next",
+      "id": "f1967afd-5b17-4e2f-bfe7-716e58ca41fb"
+    },
+    {
+      "from": "#search",
+      "to": "#enterCriterias",
+      "label": "action",
+      "id": "eb65bb43-ee6a-48dc-a8f4-ace08522ee3e"
+    },
+    {
+      "from": "#enterCriterias",
+      "to": "#choice",
+      "label": "next",
+      "id": "6e740497-b2ed-4217-896c-d7071a936385"
+    }
+  ]
+}
