@@ -1,7 +1,8 @@
 // minimal os tools
 import { Template } from "./template/index.js"
-import { Prompt } from './prompt/index.js';
-import { Command } from './command/index.js';
+// import { Prompt } from './prompt/index.js';
+import { Commander } from './commander/index.js'
+// import { Command } from './command/index.js';
 
 let debug = false
 
@@ -16,8 +17,9 @@ class Core extends Template{
     this.pwd =  process.env.PWD
     this.lang = process.env.LANG
     this.language = process.env.LANGUAGE
-    this.prompt = new Prompt({core: this})
-    this.command = new Command({core: this})
+    // this.prompt = new Prompt({core: this})
+    this.commander = new Commander({core: this})
+    // this.command = new Command({core: this})
     this.lastResponseArray = null
     this.lastResponseObject = null
     this.clipboard = []

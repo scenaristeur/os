@@ -4,6 +4,9 @@
   "description": "- neurones are the most small entities of intelligences. - brains are groups of neurones - in a world we can find some brains and a lot of other things",
   "main": "index.js",
   "type": "module",
+  "bin": {
+    "os": "./bin/index.js"
+  },
   "directories": {
     "test": "test"
   },
@@ -23,8 +26,11 @@
   "homepage": "https://github.com/scenaristeur/os#readme",
   "dependencies": {
     "commander": "^9.0.0",
+    "enquirer": "^2.3.6",
     "level": "^7.0.1",
     "levelgraph-jsonld": "github:scenaristeur/levelgraph-jsonld#patch-1",
-    "uuid": "^8.3.2"
+    "semver": "^7.3.5",
+    "uuid": "^8.3.2",
+    "yosay": "^2.0.2"
   }
 }

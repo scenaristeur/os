@@ -1,5 +1,7 @@
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 
-module.exports = async function (config) {
+export async function init (config) {
 
 console.log("init", config)
 };

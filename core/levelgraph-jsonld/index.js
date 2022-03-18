@@ -68,7 +68,7 @@ class LevelgraphJsonld extends Template {
   }
 
 
-  onCommand(c){
+  async onCommand(c){
 
 
     if(debug) console.log(c)
@@ -87,7 +87,7 @@ class LevelgraphJsonld extends Template {
       this.ls(c)
       break;
       case 'test':
-      this.test(c)
+      await this.test(c)
       break;
       case 'find':
       this.find(c)
@@ -121,6 +121,10 @@ class LevelgraphJsonld extends Template {
     neurone['@id'] = opts.base+'/'+name
     neurone.name = name
     this.db.jsonld.put(neurone, opts,  this.core.display.bind(this))
+  }
+
+  create(data){
+      this.db.jsonld.put(data, opts,  this.core.display.bind(this))
   }
 
 
@@ -202,7 +206,7 @@ class LevelgraphJsonld extends Template {
     let db = this.db
     if(debug)  console.log(data)
 
-    let term = data.array[1]
+    let term = data.what || data.array[1] // data.what pour commander.js / à corriger : data.array[1] dans prompt/command
     if(debug) console.log(term)
     db.search({
       subject: db.v('subject'),
@@ -276,18 +280,18 @@ class LevelgraphJsonld extends Template {
   // TEST
   //////////////////
 
-  test(data){
-    this.putmanu(data)
-    this.getmanu(data)
+  async test(data){
+    await this.putmanu(data)
+    await this.getmanu(data)
   }
 
-  getmanu (data){
+  async getmanu (data){
     if(debug)  console.log("!!!GET", data)
-    if(debug)  this.db.jsonld.get(manu['@id'], { '@context': manu['@context'] }, this.core.display.bind(this))
+    if(debug)  await this.db.jsonld.get(manu['@id'], { '@context': manu['@context'] }, this.core.display.bind(this))
   }
-  putmanu(data){
+  async putmanu(data){
     if(debug)  console.log("!!!PUT", data)
-    this.db.jsonld.put(manu, this.core.display.bind(this))
+    await this.db.jsonld.put(manu, this.core.display.bind(this))
   }
 
 

@@ -10,7 +10,12 @@
 - some common command `ls` `mv` `cd` `man`
 - https://www.google.com/search?q=man+linux
 
+# install globaly
 
+```
+npm install -gs ./
+
+```
 
 
 # levelgraph-jsonld commands

@@ -10,11 +10,11 @@ const require = createRequire(import.meta.url);
 const { Confirm , input, autocomplete } = require('enquirer');
 const yosay = require('yosay');
 
-import { Core } from '../../../core/index.js';
-import { LevelgraphJsonld } from '../../../core/levelgraph-jsonld/index.js';
-let levelgraphJsonld = new LevelgraphJsonld({name: "base de test", active: true})
-
-let core = new Core({bases: {levelgraphJsonld : levelgraphJsonld}})
+// import { Core } from '../../../core/index.js';
+// import { LevelgraphJsonld } from '../../../core/levelgraph-jsonld/index.js';
+// let levelgraphJsonld = new LevelgraphJsonld({name: "base de test", active: true})
+//
+// let core = new Core({bases: {levelgraphJsonld : levelgraphJsonld}})
 
 // const prompt = new Confirm({
 //   name: 'question',
@@ -59,7 +59,7 @@ function loop_root() {
 }
 
 
-export async function start() {
+export default async function start() {
   // let answer = await prompt.run()
   // console.log('Answer:', answer)
   //

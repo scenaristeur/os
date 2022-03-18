@@ -1,13 +1,17 @@
 #!/usr/bin/env node
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 const program = require('commander');
 
 // import menus
-const config = require('../lib/config');
-const init = require('../lib/init');
-// const topics = require('../lib/topics');
-const browse = require('../lib/browse');
-const neurone = require('../lib/neurone');
-const start = require('../lib/start');
+import * as config from '../lib/config.js'
+import * as init from '../lib/init.js'
+import * as start from '../lib/start.js'
+// const init = require('../lib/init');
+// // const topics = require('../lib/topics');
+// const browse = require('../lib/browse');
+// const neurone = require('../lib/neurone');
+// const start = require('../lib/start');
 
 let conf
 // print topic menu
@@ -23,7 +27,7 @@ program
 .description('Init levelgraph-jsonld database')
 .action(async function () {
   console.clear()
-  conf = await config();
+  conf = await config;
   // console.log("my config", conf)
   console.log("\n-----\nBASES",conf.bases)
   await init(conf.bases.Universe)

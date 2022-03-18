@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { createRequire } from 'module';
+// import { createRequire } from 'module';
 
 
 import open from 'open';
@@ -9,7 +9,7 @@ import open from 'open';
 // console.log('The image viewer app quit');
 //
 // // Opens the URL in the default browser.
-// await open('https://sindresorhus.com');
+await open('https://sindresorhus.com');
 //
 // // Opens the URL in a specified browser.
 // await open('https://sindresorhus.com', {app: {name: 'firefox'}});
