@@ -102,7 +102,7 @@ let editionPrompt = new Snippet({
     //   message: "base options like { base: 'http://local/base' }"
     // }
   ],
-  template: `{
+  template1: `{
     "@context": {
       "@vocab": "http://xmlns.com/foaf/0.1/",
       "homepage": { "@type": "@id" },
@@ -116,7 +116,11 @@ let editionPrompt = new Snippet({
     "version": "\${version}",
     "creator": "\${creator}"
   }
-  `
+  `,
+  template: `
+  - Name: \${name}
+  - Description: \${description}
+  - Type: \${type}`
 });
 
 
@@ -159,6 +163,7 @@ async function loop_root(opts) {
       // Open an app
       // console.log(JSON.stringify(openEditor, null, 2))
 
+      // await open.openApp('atom',{arguments: ['README.md:8:5']});
       await open.openApp('atom',{arguments: ['README.md:8:5']});
       // openEditor([
       //   {
