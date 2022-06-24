@@ -13,7 +13,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js start",
-    "install": "npm install -g ./"
+    "install-g": "npm install -g ./"
   },
   "repository": {
     "type": "git",
@@ -27,13 +27,14 @@
   },
   "homepage": "https://github.com/scenaristeur/os#readme",
   "dependencies": {
-    "commander": "^9.0.0",
-    "conf": "^10.1.1",
+    "commander": "^9.3.0",
+    "conf": "^10.1.2",
     "enquirer": "^2.3.6",
-    "level": "^7.0.1",
-    "levelgraph-jsonld": "github:scenaristeur/levelgraph-jsonld#patch-1",
+    "level": "^8.0.0",
+    "levelgraph": "^3.0.0",
+    "levelgraph-jsonld": "^1.2.0",
     "open": "^8.4.0",
-    "semver": "^7.3.5",
+    "semver": "^7.3.7",
     "uuid": "^8.3.2",
     "yosay": "^2.0.2"
   }

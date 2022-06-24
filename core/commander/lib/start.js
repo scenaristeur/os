@@ -144,7 +144,7 @@ async function loop_root(opts) {
         editionPrompt.fields.push({ name: 'type', initial: type})
         let neurone = await editionPrompt.run()
         console.log("Neurone", neurone)
-        await opts.commander.core.bases.levelgraphJsonld.create(neurone.result)
+        await opts.commander.core.bases.levelgraphJsonld.create(neurone.values)
       }
       break;
       case "ls":

@@ -6,8 +6,8 @@ import { Template } from "../template/index.js"
 export { LevelgraphJsonld }
 let home = process.env.HOME
 let path = home+"/.os/.universDB"
-const level   = require('level'),
-universDB     = level(path),
+const { Level } = require('level')
+const universDB     = new Level(path),
 levelgraph = require('levelgraph'),
 jsonld     = require('levelgraph-jsonld'),
 opts       = { base: 'http://local/base' },
@@ -121,11 +121,20 @@ class LevelgraphJsonld extends Template {
     let neurone = modeleNew
     neurone['@id'] = opts.base+'/'+name
     neurone.name = name
-    this.db.jsonld.put(neurone, opts,  this.core.display.bind(this))
+    this.db.jsonld.put(neurone, opts,  this.core.display.bind(this), function(err, obj) {
+    // do something after the obj is inserted
+    console.log("error",err)
+    console.log("obj", obj)
+  });
   }
 
   create(data){
-      this.db.jsonld.put(data, opts,  this.core.display.bind(this))
+    console.log("create",data)
+      this.db.jsonld.put(data, opts,  this.core.display.bind(this), function(err, obj) {
+      // do something after the obj is inserted
+      console.log("error",err)
+      console.log("obj", obj)
+    });
   }
 
 
