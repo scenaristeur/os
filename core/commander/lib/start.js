@@ -131,7 +131,8 @@ async function loop_root(opts) {
     switch (answer) {
       case "test":
       console.log("test")
-      await opts.commander.core.bases.levelgraphJsonld.test()
+     // await opts.commander.core.bases.levelgraphJsonld.test()
+      await opts.commander.core.bases.communitySolidServer.test()
       loop_root(opts);
       // console.log(opts.commander.core.bases.levelgraphJsonld)
       break;
@@ -149,7 +150,7 @@ async function loop_root(opts) {
       break;
       case "ls":
       console.log("ls")
-      await opts.commander.core.bases.levelgraphJsonld.ls()
+      await opts.commander.core.bases.communitySolidServer.onCommand({command:'ls'})
       break;
       case "find":
       console.log("find")

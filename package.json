@@ -27,9 +27,11 @@
   },
   "homepage": "https://github.com/scenaristeur/os#readme",
   "dependencies": {
+    "axios": "^1.4.0",
     "commander": "^9.3.0",
     "conf": "^10.1.2",
     "enquirer": "^2.3.6",
+    "jsonld": "^8.2.0",
     "level": "^8.0.0",
     "levelgraph": "^3.0.0",
     "levelgraph-jsonld": "^1.2.0",
