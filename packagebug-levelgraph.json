@@ -32,10 +32,10 @@
     "enquirer": "^2.3.6",
     "level": "^8.0.0",
     "levelgraph": "^3.0.0",
-    "levelgraph-jsonld": "levelgraph/levelgraph-jsonld",
+    "levelgraph-jsonld": "^1.2.0",
     "open": "^8.4.0",
     "semver": "^7.3.7",
-    "uuid": "^9.0.0",
+    "uuid": "^8.3.2",
     "yosay": "^2.0.2"
   }
 }

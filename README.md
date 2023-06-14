@@ -13,7 +13,8 @@
 # install globaly
 
 ```
-npm install -gs ./
+npm install
+sudo npm install -gs ./
 
 #then just run
 os  
