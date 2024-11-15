@@ -32,6 +32,7 @@ import open from 'open';
 // });
 //
 // let answer
+let host = "http://localhost:3000"
 
 const whatPrompt = new Input({
   name: 'what',
@@ -145,7 +146,7 @@ async function loop_root(opts) {
         editionPrompt.fields.push({ name: 'type', initial: type})
         let neurone = await editionPrompt.run()
         console.log("Neurone", neurone)
-        await opts.commander.core.bases.levelgraphJsonld.create(neurone.values)
+        await opts.commander.core.bases.communitySolidServer.create(neurone.values)
       }
       break;
       case "ls":
@@ -156,7 +157,7 @@ async function loop_root(opts) {
       console.log("find")
       let what = await whatPrompt.run()
       console.log(what)
-      await opts.commander.core.bases.levelgraphJsonld.find({what: what})
+      await opts.commander.core.bases.communitySolidServer.find({what: what})
       break;
       case "editor":
       console.log("editor")

@@ -148,27 +148,35 @@ class CommunitySolidServer extends Template {
     //QUERIES
     /////////////////////////////////////
 
-    new(data) {
+    async new(data) {
         console.log("new", data)
         let name = data.array[1]
         console.log("new with name", name)
         let neurone = modeleNew
         neurone['@id'] = opts.base + '/' + name
         neurone.name = name
-        this.db.jsonld.put(neurone, opts, this.core.display.bind(this), function (err, obj) {
-            // do something after the obj is inserted
-            console.log("error", err)
-            console.log("obj", obj)
-        });
+        // this.db.jsonld.put(neurone, opts, this.core.display.bind(this), function (err, obj) {
+        //     // do something after the obj is inserted
+        //     console.log("error", err)
+        //     console.log("obj", obj)
+        // }); 
+        let result = await this.put(path, manu, this.core.display.bind(this))
+        console.log('result', result)
+        this.core.display(result)
     }
 
-    create(data) {
+    async create(data) {
         console.log("create", data)
-        this.db.jsonld.put(data, opts, this.core.display.bind(this), function (err, obj) {
-            // do something after the obj is inserted
-            console.log("error", err)
-            console.log("obj", obj)
-        });
+        // this.db.jsonld.put(data, opts, this.core.display.bind(this), function (err, obj) {
+        //     // do something after the obj is inserted
+        //     console.log("error", err)
+        //     console.log("obj", obj)
+        // });
+        let path = [host, data.type, data.name] .join('/')
+        console.log("path", path)
+        let result = await this.put(path, manu, this.core.display.bind(this))
+        console.log('result', result)
+        this.core.display(result)
     }
 
 
@@ -299,7 +307,7 @@ class CommunitySolidServer extends Template {
         const compacted = await jsonld.compact(url, context);
         console.log("compacted!!!!!!!!!!!!!!!!!!!!!!!!!!!!", compacted)
         console.log("stringified!!!!!!!!!!!!!!!!!!!!!!!!!!", JSON.stringify(compacted, null, 2));
-        cb()
+        cb(compacted)
     }
 
 
@@ -416,7 +424,7 @@ class CommunitySolidServer extends Template {
 
     async test(data) {
         // axios put & get
-        //await this.putmanu("http://localhost:3000/manu.jsonld",data)
+        await this.putmanu("http://localhost:3000/manu.jsonld",data)
         //await this.getmanu(data)
         //jsonld lib
         let doc = "http://localhost:3000/manu.jsonld"
